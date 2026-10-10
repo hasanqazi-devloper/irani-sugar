@@ -12,8 +12,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-title: "Iranian Pistachio Exporter & Wholesale Bulk Supplier | Pistachio Home",
-description: "Direct B2B exporter of premium Iranian pistachios (Akbari, Fandoghi, Ahmad Aghaei & Kaleh Ghouchi). Premium quality, lab-tested, container-load wholesale supply for global markets.",
+title: "Iran Sugar Producers Association | Official 130+ Refineries B2B Portal",
+description: "Direct B2B procurement portal connecting global buyers with 130+ certified Iranian sugar refineries. Request ICUMSA 45 white refined sugar quotes & SGS lab reports via direct WhatsApp inquiry.",
   // 👑 Site Icons Configuration Engine
   icons: {
     // icon: "/favicon.ico", // public/favicon.ico wala path
