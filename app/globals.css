@@ -1,50 +1,27 @@
 @import "tailwindcss";
 
-/* ⚡ PURE HARDWARE VELOCITY SMOOTH SCROLLING */
-html {
-  scroll-behavior: smooth !important;
-}
-
-/* 🏙️ ABSOLUTE RE-ENGINEERED BASE STYLES */
-body {
-  background-color: #050505; /* Solid dark luxury canvas baseline */
-  color: #ffffff;
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* ✨ HIGH-END LUXURY FOCUS RESETS */
-*:focus {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-/* 🎛️ TAILWIND V4 FONTS CONFIGURATION BINDINGS */
-@theme inline {
-  --font-serif: var(--font-playfair);
-  --font-sans: var(--font-inter);
-}
-
-/* ⚡ SMOOTH FADE-IN UTILITY FOR DYNAMIC GRID EXPANDERS */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+@layer base {
+  :root {
+    --brand-emerald: #065F46;
+    --brand-emerald-hover: #044E38;
+    --brand-light-bg: #F8FAFC;
+    --brand-accent-gold: #D97706;
   }
 }
 
-.animate-fadeIn {
-  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Custom Utility Classes for easy Tailwind use */
+.bg-brand-emerald {
+  background-color: #065F46;
 }
-
-/* 🎛️ TAILWIND V4 FONTS CONFIGURATION BINDINGS */
-@theme inline {
-  --font-serif: var(--font-montserrat);
-  --font-sans: var(--font-montserrat);
+.bg-brand-emeraldHover:hover {
+  background-color: #044E38;
+}
+.text-brand-emerald {
+  color: #065F46;
+}
+.border-brand-emerald {
+  border-color: #065F46;
+}
+.bg-brand-lightBg {
+  background-color: #F8FAFC;
 }
