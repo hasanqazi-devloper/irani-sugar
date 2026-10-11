@@ -1,203 +1,194 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { Clock, ShieldCheck, FileText, Send, CheckCircle } from 'lucide-react';
+import React, { useState } from "react";
+import { MessageSquare, Send, ChevronDown, HelpCircle, Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
 
-export default function RFQSection() {
-  const [incoterm, setIncoterm] = useState('FOB');
-  const [productType, setProductType] = useState('Fandoghi Pistachio (Round)');
-  const [containerQty, setContainerQty] = useState('1 x 20ft Container');
+const TRADE_DESK_WHATSAPP = "989120000000";
+
+const FAQS = [
+  {
+    q: "What sugar grades are available for international export?",
+    a: "ISPA member refineries primarily supply White Refined Sugar ICUMSA 45, ICUMSA 100, and Raw Cane Sugar. All shipments strictly conform to SGS / Geo-Chem international testing standards."
+  },
+  {
+    q: "What is the Minimum Order Quantity (MOQ)?",
+    a: "Our standard export MOQ is 1 Full Container Load (1 FCL = approx. 25-27 Metric Tons). For bulk vessel orders, orders start from 1,000 Metric Tons up to 25,000 MT."
+  },
+  {
+    q: "What are the shipping terms and loading ports?",
+    a: "Orders are quoted on FOB Bandar Abbas Port or CIF destination port terms. We provide complete phytosanitary certificates, certificates of origin, and SGS pre-shipment inspection reports."
+  },
+  {
+    q: "Can I request sample orders before committing to bulk container orders?",
+    a: "Yes, sample cartons (5kg or 10kg) are available for lab analysis and quality verification. Connect directly with our Trade Desk on WhatsApp to request sample dispatches."
+  }
+];
+
+export default function TradeDeskFAQ() {
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [formData, setFormData] = useState({
+    companyName: "",
+    targetGrade: "ICUMSA 45 White Refined",
+    tonnage: "",
+    destinationPort: "",
+    notes: ""
+  });
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const msg = `Hello ISPA Trade Desk,\n*New RFQ Submission*\nCompany: ${formData.companyName}\nGrade: ${formData.targetGrade}\nTonnage: ${formData.tonnage} MT\nDestination: ${formData.destinationPort}\nNotes: ${formData.notes}`;
+    window.open(`https://wa.me/${TRADE_DESK_WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
+  };
 
   return (
-    <section id="rfq" className="relative bg-[#051813] text-[#F4F0E6] py-16 px-4 md:px-16 border-b border-[#1A4337] overflow-hidden">
-
-      <div className="absolute inset-0 bg-[radial-gradient(#C5922E_1px,transparent_1px)] [background-size:28px_28px] opacity-10 pointer-events-none" />
-      <div className="absolute top-1/4 -right-20 w-96 h-96 bg-[#C5922E]/10 rounded-full blur-[120px] pointer-events-none" />
-      
-      <div className="relative max-w-7xl mx-auto space-y-10">
-
-        {/* HEADER SECTION */}
-        <div className="text-center max-w-3xl mx-auto space-y-2">
-      
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-[#F4F0E6] leading-tight">
-            Request Container Pricing (FOB / CIF)
+    <section id="trade-desk" className="py-20 bg-green-100 border-b border-slate-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+        
+          <h2 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight leading-tight">
+            Direct B2B <span className="text-[#065F46]">Trade Desk Inquiry</span>
           </h2>
-          <p className="text-[#F4F0E6]/70 text-xs md:text-sm font-medium max-w-xl mx-auto leading-relaxed">
-            Get an official commercial quotation from Pistachio Home. Includes verified Proforma Invoice and Lab Analysis Report.
+          <p className="text-slate-600 text-sm sm:text-base mt-3 font-medium">
+            Submit your official Request for Quotation (RFQ) or contact our international trade secretariat.
           </p>
         </div>
 
-        {/* MAIN CONTAINER */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Left Column: Interactive RFQ Form (7 Cols) */}
+          <div className="lg:col-span-7 bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm">
+            <div className="mb-6">
+              <h3 className="text-xl font-extrabold text-slate-950">Submit Your RFQ</h3>
+              <p className="text-xs text-slate-500 mt-1">Fill in your requirements below to receive an instant WhatsApp quotation.</p>
+            </div>
 
-          {/* LEFT COLUMN */}
-          <div className="lg:col-span-5 space-y-6 bg-[#133A2E] border border-[#1A4337] p-6 md:p-8 rounded-3xl shadow-xl flex flex-col justify-between">
-            <div className="space-y-6">
+            <form onSubmit={handleFormSubmit} className="space-y-4">
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs font-bold text-slate-700 block mb-1.5">Company Name *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Global Trading Ltd."
+                    value={formData.companyName}
+                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                    className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:outline-none focus:border-[#065F46] font-medium"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs font-bold text-slate-700 block mb-1.5">Target Sugar Grade *</label>
+                  <select
+                    value={formData.targetGrade}
+                    onChange={(e) => setFormData({ ...formData, targetGrade: e.target.value })}
+                    className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:outline-none focus:border-[#065F46] font-bold"
+                  >
+                    <option>ICUMSA 45 White Refined</option>
+                    <option>ICUMSA 100 Grade</option>
+                    <option>Raw Cane Sugar</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs font-bold text-slate-700 block mb-1.5">Metric Tonnage (MT) *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. 500 MT"
+                    value={formData.tonnage}
+                    onChange={(e) => setFormData({ ...formData, tonnage: e.target.value })}
+                    className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:outline-none focus:border-[#065F46] font-medium"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs font-bold text-slate-700 block mb-1.5">Destination Port *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Jebel Ali / Karachi / Mersin"
+                    value={formData.destinationPort}
+                    onChange={(e) => setFormData({ ...formData, destinationPort: e.target.value })}
+                    className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:outline-none focus:border-[#065F46] font-medium"
+                  />
+                </div>
+              </div>
+
               <div>
-                <span className="text-[10px] font-black text-[#C5922E] uppercase tracking-widest block mb-1">
-                  Quality Guaranteed
-                </span>
-                <h3 className="text-xl md:text-2xl font-black text-[#F4F0E6]">
-                  Pistachio Home Direct Guarantee
-                </h3>
-              </div>
-
-              <div className="space-y-5 border-y border-[#1A4337] py-6">
-
-                <div className="flex items-start gap-3.5">
-                  <div className="p-2.5 bg-[#C5922E]/10 text-[#C5922E] rounded-xl border border-[#C5922E]/20 shrink-0">
-                    <Clock className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-[#F4F0E6] text-xs">Fast-Track Quote</h4>
-                    <p className="text-[11px] text-[#F4F0E6]/60 mt-0.5 leading-normal">Official Proforma Invoice issued within hours.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3.5">
-                  <div className="p-2.5 bg-[#C5922E]/10 text-[#C5922E] rounded-xl border border-[#C5922E]/20 shrink-0">
-                    <ShieldCheck className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-[#F4F0E6] text-xs">Certified Documentation</h4>
-                    <p className="text-[11px] text-[#F4F0E6]/60 mt-0.5 leading-normal">Phytosanitary, Certificate of Origin &amp; Aflatoxin COA.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3.5">
-                  <div className="p-2.5 bg-[#C5922E]/10 text-[#C5922E] rounded-xl border border-[#C5922E]/20 shrink-0">
-                    <FileText className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-[#F4F0E6] text-xs">Flexible Export Terms</h4>
-                    <p className="text-[11px] text-[#F4F0E6]/60 mt-0.5 leading-normal">Transparent T/T and LC payment terms available.</p>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <div className="bg-[#0B2B22] border border-[#1A4337] p-4 rounded-2xl flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-[#C5922E]" />
-                <span className="text-xs font-bold text-[#F4F0E6]">Direct Rafsanjan Orchard Supplier</span>
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT COLUMN */}
-          <div className="lg:col-span-7 bg-[#133A2E] border border-[#1A4337] p-6 md:p-8 rounded-3xl shadow-xl space-y-6">
-
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
-
-              <div className="space-y-2">
-                <label className="text-xs font-black text-[#F4F0E6]/80 uppercase tracking-wider block">
-                  1. Shipping Term (Incoterms 2020)
-                </label>
-                <div className="grid grid-cols-2 gap-3">
-                  {['FOB (Bandar Abbas / Port)', 'CIF (Destination Port)'].map((term) => {
-                    const termKey = term.split(' ')[0];
-                    const isSelected = incoterm === termKey;
-                    return (
-                      <button
-                        type="button"
-                        key={term}
-                        onClick={() => setIncoterm(termKey)}
-                        className={`p-3.5 text-xs font-bold rounded-xl border transition-all text-left flex items-center justify-between ${
-                          isSelected
-                            ? 'bg-[#C5922E] text-[#0B2B22] border-[#E2B755] font-black shadow-lg'
-                            : 'bg-[#0B2B22] border-[#1A4337] text-[#F4F0E6]/80 hover:border-[#C5922E]/40'
-                        }`}
-                      >
-                        <span>{term}</span>
-                        {isSelected && (
-                          <CheckCircle className="w-4 h-4 text-[#0B2B22] fill-current" />
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-[#F4F0E6]/80">Select Pistachio Variety</label>
-                  <select
-                    value={productType}
-                    onChange={(e) => setProductType(e.target.value)}
-                    className="w-full bg-[#0B2B22] border border-[#1A4337] rounded-xl px-3.5 py-3 text-xs text-[#F4F0E6] font-medium focus:outline-none focus:border-[#C5922E]"
-                  >
-                    <option>Fandoghi Pistachio (28/30, 30/32 Round)</option>
-                    <option>Ahmad Aghaei Pistachio (26/28 Long)</option>
-                    <option>Akbari Pistachio (20/22 Super Long)</option>
-                    <option>Kalleh Ghouchi Pistachio (24/26 Jumbo)</option>
-                    <option>Green Peeled Pistachio Kernels (Grade A)</option>
-                  </select>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-[#F4F0E6]/80">Target Order Volume</label>
-                  <select
-                    value={containerQty}
-                    onChange={(e) => setContainerQty(e.target.value)}
-                    className="w-full bg-[#0B2B22] border border-[#1A4337] rounded-xl px-3.5 py-3 text-xs text-[#F4F0E6] font-medium focus:outline-none focus:border-[#C5922E]"
-                  >
-                    <option>1 x 20ft Container (Trial Batch ~12-14 Tons)</option>
-                    <option>1 x 40ft Container (Standard FCL ~25 Tons)</option>
-                    <option>2 - 5 x 40ft Containers (Monthly Contract)</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-[#F4F0E6]/80">Company Name</label>
-                  <input
-                    type="text"
-                    placeholder="e.g. Royal Food Trading LLC"
-                    className="w-full bg-[#0B2B22] border border-[#1A4337] rounded-xl px-3.5 py-3 text-xs text-[#F4F0E6] focus:outline-none focus:border-[#C5922E] placeholder:text-[#F4F0E6]/30"
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-[#F4F0E6]/80">Destination Port</label>
-                  <input
-                    type="text"
-                    placeholder="e.g. Jebel Ali / Mersin / Nhava Sheva"
-                    className="w-full bg-[#0B2B22] border border-[#1A4337] rounded-xl px-3.5 py-3 text-xs text-[#F4F0E6] focus:outline-none focus:border-[#C5922E] placeholder:text-[#F4F0E6]/30"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-[#F4F0E6]/80">Work Email</label>
-                  <input
-                    type="email"
-                    placeholder="import@company.com"
-                    className="w-full bg-[#0B2B22] border border-[#1A4337] rounded-xl px-3.5 py-3 text-xs text-[#F4F0E6] focus:outline-none focus:border-[#C5922E] placeholder:text-[#F4F0E6]/30"
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-[#F4F0E6]/80">WhatsApp / Phone Number</label>
-                  <input
-                    type="tel"
-                    placeholder="+971 50 000 0000"
-                    className="w-full bg-[#0B2B22] border border-[#1A4337] rounded-xl px-3.5 py-3 text-xs text-[#F4F0E6] focus:outline-none focus:border-[#C5922E] placeholder:text-[#F4F0E6]/30"
-                  />
-                </div>
+                <label className="text-xs font-bold text-slate-700 block mb-1.5">Additional Requirements (Optional)</label>
+                <textarea
+                  rows={3}
+                  placeholder="Specify packaging preferences, delivery timelines, or lab analysis needs..."
+                  value={formData.notes}
+                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                  className="w-full bg-white border border-slate-200 rounded-xl p-4 text-xs text-slate-900 focus:outline-none focus:border-[#065F46] font-medium"
+                />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-[#C5922E] hover:bg-[#B38226] text-[#0B2B22] font-black text-xs md:text-sm py-4 rounded-xl shadow-lg transition-all uppercase tracking-wider flex items-center justify-center gap-2 mt-2 cursor-pointer active:scale-[0.98]"
+                className="w-full bg-[#065F46] hover:bg-[#044E38] text-white font-extrabold text-xs py-4 rounded-xl transition-all flex items-center justify-center gap-2 shadow-md active:scale-95"
               >
-                <Send className="w-4 h-4 stroke-[2.5]" />
-                <span>Submit RFQ &amp; Request Proforma Invoice</span>
+                <Send className="w-4 h-4" />
+                <span>Submit RFQ via Direct WhatsApp Desk</span>
               </button>
 
             </form>
+          </div>
+
+          {/* Right Column: FAQs & Quick Direct Contacts (5 Cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            
+            {/* Quick Contact Banner */}
+            <div className="bg-[#033B2C] text-white rounded-3xl p-6 shadow-md border border-emerald-900">
+              <span className="inline-flex items-center gap-1.5 text-[10px] font-extrabold bg-emerald-900/80 text-emerald-300 px-3 py-1 rounded-full border border-emerald-700 mb-3">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span>INSTANT RESPONSE DESK</span>
+              </span>
+              <h4 className="text-lg font-black text-white">Need Immediate Assistance?</h4>
+              <p className="text-slate-300 text-xs mt-1 mb-4">
+                Our export team is online 24/7 on WhatsApp for container availability and SGS documentation queries.
+              </p>
+              <a
+                href={`https://wa.me/${TRADE_DESK_WHATSAPP}?text=${encodeURIComponent("Hello ISPA Trade Desk, I have an urgent trade inquiry.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-[#065F46] hover:bg-[#044E38] text-white font-bold text-xs px-5 py-3 rounded-xl transition-all shadow-md"
+              >
+                <MessageSquare className="w-4 h-4 text-emerald-300" />
+                <span>Chat on WhatsApp</span>
+              </a>
+            </div>
+
+            {/* Accordion FAQs */}
+            <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 shadow-2xs space-y-3">
+              <div className="flex items-center gap-2 text-slate-900 font-extrabold text-sm mb-2">
+                <HelpCircle className="w-4 h-4 text-[#065F46]" />
+                <span>Frequently Asked Questions</span>
+              </div>
+
+              {FAQS.map((faq, idx) => (
+                <div key={idx} className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+                  <button
+                    onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                    className="w-full text-left px-4 py-3 text-xs font-bold text-slate-900 flex items-center justify-between gap-2 hover:bg-slate-50 transition-colors"
+                  >
+                    <span>{faq.q}</span>
+                    <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${openFaq === idx ? "rotate-180 text-[#065F46]" : ""}`} />
+                  </button>
+                  {openFaq === idx && (
+                    <div className="px-4 pb-3 text-[11px] text-slate-600 font-medium leading-relaxed border-t border-slate-100 pt-2">
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
 
           </div>
 

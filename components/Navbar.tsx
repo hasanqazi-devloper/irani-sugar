@@ -30,10 +30,10 @@ export default function Navbar() {
         <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-700">
           <a href="/" className="text-[#065F46] border-b-2 border-[#065F46] pb-1">Home</a>
           <a href="/mills" className="hover:text-[#065F46] transition-colors">Our Mills</a>
-          <a href="#products" className="hover:text-[#065F46] transition-colors">Products</a>
+          <a href="/products" className="hover:text-[#065F46] transition-colors">Products</a>
           <a href="#quality" className="hover:text-[#065F46] transition-colors">Quality</a>
           <a href="#rfq" className="hover:text-[#065F46] transition-colors">Trade</a>
-          <a href="#contact" className="hover:text-[#065F46] transition-colors">Contact</a>
+          <a href="/contact" className="hover:text-[#065F46] transition-colors">Contact</a>
         </nav>
 
         {/* Right Action Controls */}
@@ -74,10 +74,10 @@ export default function Navbar() {
         <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3 font-semibold text-slate-700 text-sm">
           <a href="/" className="block text-[#065F46]">Home</a>
           <a href="/mills" className="block">Our Mills</a>
-          <a href="#products" className="block">Products</a>
+          <a href="/products" className="block">Products</a>
           <a href="#quality" className="block">Quality</a>
           <a href="#rfq" className="block">Trade</a>
-          <a href="#contact" className="block">Contact</a>
+          <a href="/contact" className="block">Contact</a>
         </div>
       )}
     </header>

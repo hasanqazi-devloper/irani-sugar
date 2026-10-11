@@ -26,13 +26,13 @@ export default function SohipEliteFinal() {
         {/* <TrustSection /> */}
         {/* <ProductsSection /> */}
         {/* <HeritageStory /> */}
-        {/* <LogisticsEstimator /> */}
+        <LogisticsEstimator />
 
 
         {/* <IndustriesSection /> */}
         {/* <Testimonials /> */}
         {/* <WhyChooseUsSection /> */}
-        {/* <RfqSection /> */}
+        <RfqSection />
         {/* <WhatsAppButton/> */}
       </main>
     </LazyMotion>
