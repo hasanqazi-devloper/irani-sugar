@@ -235,7 +235,7 @@ export default function MillsPage() {
         
         <div className="absolute inset-0 z-0 pointer-events-none">
           <img
-            src="/product-hero.png"
+            src="/mills-hero.png"
             alt="Iranian Sugar Refineries Background"
             className="w-full h-full object-cover object-center opacity-60 sm:opacity-80"
           />
@@ -256,48 +256,7 @@ export default function MillsPage() {
               Connect with certified mills, explore capacity, quality standards and directly inquire for your import requirements.
             </p>
 
-            {/* Feature Badges inside Hero */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4">
-              <div className="flex items-center gap-2.5 bg-slate-900/70 backdrop-blur-md border border-white/15 p-3 rounded-2xl text-white">
-                <div className="w-8 h-8 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-300 shrink-0">
-                  <Building2 className="w-4 h-4" />
-                </div>
-                <div>
-                  <p className="text-[11px] font-bold leading-none">130+ Mills</p>
-                  <p className="text-[10px] text-slate-300 mt-1 font-medium">Verified Refineries</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5 bg-slate-900/70 backdrop-blur-md border border-white/15 p-3 rounded-2xl text-white">
-                <div className="w-8 h-8 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-300 shrink-0">
-                  <ShieldCheck className="w-4 h-4" />
-                </div>
-                <div>
-                  <p className="text-[11px] font-bold leading-none">ICUMSA 45</p>
-                  <p className="text-[10px] text-slate-300 mt-1 font-medium">Global Standard</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5 bg-slate-900/70 backdrop-blur-md border border-white/15 p-3 rounded-2xl text-white">
-                <div className="w-8 h-8 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-300 shrink-0">
-                  <MapPin className="w-4 h-4" />
-                </div>
-                <div>
-                  <p className="text-[11px] font-bold leading-none">{provincesList.length} Provinces</p>
-                  <p className="text-[10px] text-slate-300 mt-1 font-medium">Across Iran</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5 bg-slate-900/70 backdrop-blur-md border border-white/15 p-3 rounded-2xl text-white">
-                <div className="w-8 h-8 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-300 shrink-0">
-                  <Globe className="w-4 h-4" />
-                </div>
-                <div>
-                  <p className="text-[11px] font-bold leading-none">Global Direct</p>
-                  <p className="text-[10px] text-slate-300 mt-1 font-medium">FOB Bandar Abbas</p>
-                </div>
-              </div>
-            </div>
+         
 
           </div>
         </div>

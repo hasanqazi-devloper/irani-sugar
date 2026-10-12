@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { m } from "framer-motion";
 import { Mail, MapPin, Phone, ShieldCheck, Loader2 } from "lucide-react";
 // 🚀 Pathed correctly to your client instance schema mapping
-import { supabase } from "@/app/lib/supabase"; 
+import { supabase } from "@/app/[locale]/lib/supabase"; 
 
 export default function ContactForm() {
   const [isMobile, setIsMobile] = useState(false);

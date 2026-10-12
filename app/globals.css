@@ -8,8 +8,86 @@
     --brand-accent-gold: #D97706;
   }
 }
+/* Forcefully Hide All Google Translate Top Frames & Banners */
+body > .skiptranslate,
+body > iframe.skiptranslate,
+.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+  visibility: hidden !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  position: absolute !important;
+}
 
-/* Custom Utility Classes for easy Tailwind use */
+body {
+  top: 0 !important;
+  position: relative !important;
+  margin-top: 0 !important;
+}
+
+html {
+  top: 0 !important;
+  margin-top: 0 !important;
+}
+/* =========================================================
+   GOOGLE TRANSLATE TOP BAR & OVERLAY HIDE RULES
+   ========================================================= */
+
+/* Top banner iframe aur Google toolbar container hide karne ke liye */
+.goog-te-banner-frame,
+iframe.goog-te-banner-frame,
+iframe.skiptranslate,
+.goog-te-banner,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-te-spinner-pos {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  opacity: 0 !important;
+}
+
+/* Google Body Padding & Top Margin Reset */
+body {
+  top: 0px !important;
+  position: static !important;
+  min-height: 100vh !important;
+}
+
+/* HTML element shifting fix */
+html {
+  top: 0px !important;
+  position: static !important;
+}
+
+/* Hover tooltips aur text highlighting hide karne ke liye */
+.goog-tooltip,
+.goog-tooltip:hover,
+.VIpgm-wT261-Smfa2b {
+  display: none !important;
+}
+
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Google Translate Widget Combo Box Hide */
+.goog-te-gadget {
+  font-size: 0 !important;
+}
+
+.goog-te-gadget span {
+  display: none !important;
+}
+
+/* =========================================================
+   CUSTOM UTILITY CLASSES
+   ========================================================= */
 .bg-brand-emerald {
   background-color: #065F46;
 }

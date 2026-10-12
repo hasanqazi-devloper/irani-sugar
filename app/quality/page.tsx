@@ -1,264 +1,263 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Image from 'next/image';
-import { 
-  ArrowDown, 
-  ShieldCheck, 
-  ThermometerSnowflake, 
-  FileCheck2, 
-  Ship, 
-  Globe2, 
-  PackageCheck, 
-  MessageSquare, 
-  ArrowUpRight,
-  Check,
+import React from "react";
+import {
   Award,
-  Scale,
-  Sparkles,
-  Microscope,
+  Globe,
+  ShieldCheck,
   CheckCircle2,
-  FileSpreadsheet
-} from 'lucide-react';
+  Download,
+  FlaskConical,
+  Check
+} from "lucide-react";
 
-export default function QualityPage() {
-  const qualityPillars = [
-    {
-      num: '01',
-      title: 'Zero-Aflatoxin Protocol',
-      desc: 'Rigorous multi-stage sampling verified by accredited third-party laboratories to meet strict European and Asian safety thresholds.'
-    },
-    {
-      num: '02',
-      title: 'Optical & Laser Sorting',
-      desc: 'High-speed monochrome and color sorting channels automatically detect and discard shell deformities, cracks, and color variations.'
-    },
-    {
-      num: '03',
-      title: 'Moisture Calibration',
-      desc: 'Controlled low-heat drying maintaining internal humidity strictly below 5% to prevent mold growth and extend shelf life.'
-    },
-    {
-      num: '04',
-      title: 'Batch Traceability',
-      desc: 'Every exported container is tagged with a unique batch number linked directly to its orchard source and lab inspection report.'
-    }
-  ];
+interface SpecRow {
+  parameter: string;
+  unit: string;
+  specification: string;
+  typicalResult: string;
+}
 
-  const labCertifications = [
-    { title: 'Phytosanitary Certificate', desc: 'Issued by national agricultural authorities confirming pest and pathogen-free status.' },
-    { title: 'Certificate of Analysis (COA)', desc: 'Detailed lab breakdown of moisture content, aflatoxin levels (B1, B2, G1, G2), and purity.' },
-    { title: 'Certificate of Origin', desc: 'Official documentation confirming authentic Iranian Rafsanjan origins.' },
-    { title: 'Fumigation & Inspection Certificate', desc: 'Container-level treatment verification for seamless customs clearance at destination ports.' }
-  ];
+const SPECS_DATA: SpecRow[] = [
+  { parameter: "Polarization", unit: "°Z", specification: "≥ 99.80%", typicalResult: "99.82%" },
+  { parameter: "Moisture", unit: "% (w/w)", specification: "≤ 0.04%", typicalResult: "0.03%" },
+  { parameter: "Ash Content", unit: "% (w/w)", specification: "≤ 0.04%", typicalResult: "0.02%" },
+  { parameter: "Solubility (Dry Substance)", unit: "% (w/w)", specification: "≥ 99.7%", typicalResult: "99.8%" },
+  { parameter: "Colour (ICUMSA)", unit: "IU", specification: "≤ 45", typicalResult: "32" },
+  { parameter: "Granulation", unit: "%", specification: "> 99.5% (on sieve)", typicalResult: "99.7%" },
+  { parameter: "Magnetic Particles", unit: "mg/kg", specification: "≤ 5", typicalResult: "< 1" },
+  { parameter: "SO₂ Residue", unit: "mg/kg", specification: "≤ 10", typicalResult: "< 5" },
+  { parameter: "Heavy Metals (as Pb)", unit: "mg/kg", specification: "≤ 0.5", typicalResult: "< 0.1" },
+  { parameter: "Pesticide Residue", unit: "-", specification: "Complies with Codex", typicalResult: "Compliant" },
+];
+
+export default function QualityPageContent() {
+  const handleDownloadTDS = () => {
+    alert("Downloading Technical Data Sheet (TDS PDF)...");
+  };
 
   return (
-    <div className="bg-[#0B2B22] text-[#F4F0E6] min-h-screen selection:bg-[#C5922E] selection:text-[#0B2B22]">
+    <div className="bg-[#F8FAFC] text-slate-900 font-sans antialiased w-full">
 
-      {/* 1. HERO SECTION (Quality & Lab Background) */}
-      <section className="relative bg-[#0B2B22] text-[#F4F0E6] overflow-hidden py-20 md:py-18 border-b border-[#1A4337]">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1756749442845-4973b7cede48?auto=format&fit=crop&w=1920&q=100"
-            alt="Pistachio Quality Control Lab"
-            fill
-            priority
-            unoptimized
-            className="object-cover object-center opacity-40 -scale-x-100"
+      {/* 1. CLEAN HERO BANNER SECTION */}
+      <section className="relative bg-slate-950 border-b border-slate-200 overflow-hidden pt-12 pb-16 w-full">
+
+        {/* Background Full Image with Dark Gradient Overlay */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <img
+            src="/quality-hero.png" // Aap yahan apni background image path rakh sakte hain
+            alt="Quality & Certifications Background"
+            className="w-full h-full object-cover object-center opacity-60 sm:opacity-80"
+            onError={(e) => {
+              (e.target as HTMLElement).style.display = "none";
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B2B22]/85 via-[#0B2B22]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 sm:via-slate-900/80 to-slate-950/60" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-          <div className="max-w-3xl space-y-7 text-left">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-none uppercase">
-              <span className="text-[#F4F0E6]">QUALITY </span>
-              <span className="text-[#C5922E] drop-shadow-[0_0_25px_rgba(197,146,46,0.3)]">ASSURANCE & STANDARDS.</span>
+        <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl mx-auto">
+          <div className="max-w-5xl space-y-6 py-6">
+
+            <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+              ICUMSA 45 Technical Specifications <br />
+              <span className="text-emerald-400">& Quality Assurance</span>
             </h1>
 
-            <p className="text-[#F4F0E6]/90 text-sm sm:text-base md:text-lg font-medium leading-relaxed max-w-2xl">
-              Uncompromising laboratory testing, automated optical sorting, and international compliance protocols ensuring every batch meets global food safety standards.
+            <p className="text-slate-300 text-sm sm:text-base font-medium leading-relaxed max-w-2xl">
+              Our sugar meets international standards with consistent quality, ensuring reliability for global trade and industrial use.
             </p>
 
-            <div className="pt-2">
-              <a
-                href="#standards"
-                className="inline-flex items-center gap-3 bg-[#C5922E] hover:bg-[#B38226] text-[#0B2B22] font-black text-xs uppercase tracking-wider px-8 py-4 rounded-xl transition-all duration-300 shadow-xl shadow-[#C5922E]/20 hover:shadow-[#C5922E]/40 transform active:scale-95 group"
-              >
-                <span>EXPLORE TESTING STANDARDS</span>
-                <ArrowDown className="w-4 h-4 stroke-[3] transition-transform duration-300 group-hover:translate-y-1" />
-              </a>
-            </div>
+         
+
           </div>
         </div>
       </section>
 
-      {/* 2. QUALITY CONTROL OVERVIEW */}
-      <section id="standards" className="py-16 md:py-18 bg-[#133A2E] border-b border-[#1A4337] relative">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* LEFT: CLEAR PNG SHOWCASE */}
-          <div className="lg:col-span-6 relative h-80 sm:h-[450px] w-full flex items-center justify-center">
-            <Image
-              src="/about.png"
-              alt="Laboratory Certified Iranian Pistachios"
-              fill
-              priority
-              className="object-contain object-center drop-shadow-none"
-            />
-          </div>
+      {/* 2. MAIN CONTENT AREA (Table + Certifications Sidebar) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-          {/* RIGHT: CONTENT */}
-          <div className="lg:col-span-6 space-y-6">
-            <h2 className="text-3xl sm:text-4xl font-black text-[#F4F0E6] tracking-tight leading-tight">
-              Precision Grading & Zero-Tolerance Safety Protocol
-            </h2>
-            
-            <p className="text-[#F4F0E6]/80 text-sm md:text-base leading-relaxed font-normal">
-              At Pistachio Home, quality control starts before harvest. We implement strict moisture monitoring in orchards and process every lot through advanced mechanical sizing, optical color sorting, and laboratory aflatoxin screenings.
-            </p>
+          {/* LEFT: ICUMSA 45 TECHNICAL SPECIFICATION TABLE */}
+          <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-6 shadow-2xs space-y-5">
 
-            <div className="p-4 bg-[#0B2B22] border-l-4 border-[#C5922E] rounded-r-xl space-y-1 border border-[#1A4337]">
-              <p className="text-xs font-bold text-[#C5922E] uppercase tracking-wider">Aflatoxin Control Guarantee</p>
-              <p className="text-xs text-[#F4F0E6]/80">
-                Every batch undergoes HPLC (High-Performance Liquid Chromatography) testing to guarantee compliance with EU B1 & Total Aflatoxin limit regulations.
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 3. FOUR PILLARS OF QUALITY */}
-      <section className="py-16 md:py-20 bg-[#0B2B22] border-b border-[#1A4337]">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
-          
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <h2 className="text-3xl md:text-4xl font-black text-[#F4F0E6] tracking-tight">
-              Four Stages of Quality Control
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {qualityPillars.map((item, idx) => (
-              <div key={idx} className="bg-[#133A2E] border border-[#1A4337] hover:border-[#C5922E]/50 p-6 rounded-2xl space-y-3 transition-all duration-300">
-                <span className="text-3xl font-black text-[#C5922E] block">{item.num}</span>
-                <h3 className="text-base font-bold text-[#F4F0E6]">{item.title}</h3>
-                <p className="text-xs text-[#F4F0E6]/70 leading-relaxed">{item.desc}</p>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+              <div>
+                <h2 className="text-lg sm:text-xl font-black text-slate-950 tracking-tight">
+                  ICUMSA 45 Technical Specification
+                </h2>
+                <p className="text-xs text-slate-500 font-medium mt-0.5">
+                  Our sugar is tested and certified to meet ICUMSA 45 international standards.
+                </p>
               </div>
-            ))}
-          </div>
 
-        </div>
-      </section>
-
-      {/* 4. TECHNICAL PARAMETERS TABLE */}
-      <section className="py-16 md:py-18 bg-[#133A2E] border-b border-[#1A4337]">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* LEFT: CONTENT & SPECIFICATIONS */}
-          <div className="lg:col-span-6 space-y-6">
-            <h2 className="text-3xl sm:text-4xl font-black text-[#F4F0E6] tracking-tight leading-tight">
-              Export Grade Technical Specifications
-            </h2>
-            
-            <p className="text-[#F4F0E6]/80 text-sm md:text-base leading-relaxed font-normal">
-              We provide precise analytical parameters to ensure consistency for wholesale distributors, roasters, and food manufacturing applications.
-            </p>
-
-            <div className="space-y-3 pt-2">
-              <div className="p-4 bg-[#0B2B22] border border-[#1A4337] rounded-xl flex items-center justify-between">
-                <span className="text-xs font-bold text-[#F4F0E6]">Moisture Level</span>
-                <span className="text-xs font-bold text-[#C5922E]">Max 5.0%</span>
-              </div>
-              <div className="p-4 bg-[#0B2B22] border border-[#1A4337] rounded-xl flex items-center justify-between">
-                <span className="text-xs font-bold text-[#F4F0E6]">Natural Open Split Shells</span>
-                <span className="text-xs font-bold text-[#C5922E]">Min 95%</span>
-              </div>
-              <div className="p-4 bg-[#0B2B22] border border-[#1A4337] rounded-xl flex items-center justify-between">
-                <span className="text-xs font-bold text-[#F4F0E6]">Foreign Material / Debris</span>
-                <span className="text-xs font-bold text-[#C5922E]">Max 0.1%</span>
-              </div>
-              <div className="p-4 bg-[#0B2B22] border border-[#1A4337] rounded-xl flex items-center justify-between">
-                <span className="text-xs font-bold text-[#F4F0E6]">Deformed / Stained Shells</span>
-                <span className="text-xs font-bold text-[#C5922E]">Max 1.0%</span>
+              <div className="bg-emerald-50 text-[#065F46] border border-emerald-200/80 text-xs font-black px-3.5 py-1.5 rounded-full shrink-0">
+                ICUMSA 45 <span className="font-normal text-slate-600">White Sugar</span>
               </div>
             </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-slate-50 text-slate-400 text-[10px] uppercase tracking-wider border-b border-slate-200 font-black">
+                    <th className="py-3 px-3">Parameter</th>
+                    <th className="py-3 px-3">Unit</th>
+                    <th className="py-3 px-3">Specification (ICUMSA 45)</th>
+                    <th className="py-3 px-3 text-right">Typical Result</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-xs font-medium text-slate-800">
+                  {SPECS_DATA.map((row, idx) => (
+                    <tr key={idx} className="hover:bg-emerald-50/30 transition-colors">
+                      <td className="py-3 px-3 font-bold text-slate-950">{row.parameter}</td>
+                      <td className="py-3 px-3 text-slate-500 font-mono">{row.unit}</td>
+                      <td className="py-3 px-3 font-semibold text-slate-700">{row.specification}</td>
+                      <td className="py-3 px-3 text-right">
+                        <div className="inline-flex items-center justify-end gap-1.5">
+                          <span className="font-extrabold text-slate-950">{row.typicalResult}</span>
+                          <span className="inline-flex items-center gap-1 bg-emerald-100/80 text-[#065F46] text-[9px] font-bold px-2 py-0.5 rounded-full">
+                            <Check className="w-2.5 h-2.5" />
+                            <span>Within Range</span>
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
           </div>
 
-          {/* RIGHT: CLEAR PNG SHOWCASE */}
-          <div className="lg:col-span-6 relative h-80 sm:h-[450px] w-full flex items-center justify-center">
-            <Image
-              src="/hero.png"
-              alt="Quality Inspected Bulk Pistachios"
-              fill
-              priority
-              className="object-contain object-center drop-shadow-none"
-            />
-          </div>
+          {/* RIGHT: CERTIFICATIONS & COMPLIANCE */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-2xs space-y-6">
 
-        </div>
-      </section>
+              <div>
+                <h3 className="text-lg font-black text-slate-950 flex items-center gap-2">
+                  <ShieldCheck className="w-5 h-5 text-[#065F46]" />
+                  Certifications & Compliance
+                </h3>
+                <p className="text-xs text-slate-500 font-medium mt-0.5">
+                  Globally recognized standards for your confidence.
+                </p>
+              </div>
 
-      {/* 5. OFFICIAL CERTIFICATIONS SHOWCASE */}
-      <section className="py-16 md:py-20 bg-[#0B2B22] border-b border-[#1A4337]">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
-          
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <h2 className="text-3xl md:text-4xl font-black text-[#F4F0E6] tracking-tight">
-              Official Shipping &amp; Quality Documentation
-            </h2>
-          </div>
+              <div className="space-y-4">
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {labCertifications.map((cert, idx) => (
-              <div key={idx} className="bg-[#133A2E] border border-[#1A4337] hover:border-[#C5922E]/50 p-6 rounded-2xl flex items-start gap-4 transition-all duration-300">
-                <div className="p-3 bg-[#0B2B22] border border-[#1A4337] rounded-xl text-[#C5922E] shrink-0">
-                  <FileCheck2 className="w-6 h-6" />
+                {/* ISO 22000 */}
+                <div className="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-11 h-11 rounded-2xl bg-[#065F46] text-white flex flex-col items-center justify-center font-black text-xs shrink-0 shadow-xs">
+                      ISO
+                    </div>
+                    <div>
+                      <h4 className="text-xs font-black text-slate-950">ISO 22000</h4>
+                      <p className="text-[11px] text-slate-500 font-medium leading-tight mt-0.5">
+                        Food Safety Management System
+                      </p>
+                      <p className="text-[10px] text-slate-400 mt-1">
+                        Ensures food safety and quality across the supply chain.
+                      </p>
+                    </div>
+                  </div>
+                  <span className="inline-flex items-center gap-1 bg-emerald-100 text-[#065F46] text-[10px] font-bold px-2.5 py-1 rounded-full shrink-0">
+                    <Check className="w-3 h-3" /> Certified
+                  </span>
                 </div>
-                <div className="space-y-1">
-                  <h3 className="text-base font-bold text-[#F4F0E6]">{cert.title}</h3>
-                  <p className="text-xs text-[#F4F0E6]/70 leading-relaxed">{cert.desc}</p>
+
+                {/* FDA License */}
+                <div className="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-11 h-11 rounded-2xl bg-[#0F172A] text-white flex items-center justify-center font-black text-xs shrink-0 shadow-xs">
+                      FDA
+                    </div>
+                    <div>
+                      <h4 className="text-xs font-black text-slate-950">FDA License</h4>
+                      <p className="text-[11px] text-slate-500 font-medium leading-tight mt-0.5">
+                        U.S. Food & Drug Administration
+                      </p>
+                      <p className="text-[10px] text-slate-400 mt-1">
+                        Meets FDA requirements for food and beverage exports.
+                      </p>
+                    </div>
+                  </div>
+                  <span className="inline-flex items-center gap-1 bg-emerald-100 text-[#065F46] text-[10px] font-bold px-2.5 py-1 rounded-full shrink-0">
+                    <Check className="w-3 h-3" /> Certified
+                  </span>
                 </div>
+
+                {/* SGS Inspection */}
+                <div className="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-11 h-11 rounded-2xl bg-amber-500 text-white flex items-center justify-center font-black text-xs shrink-0 shadow-xs">
+                      SGS
+                    </div>
+                    <div>
+                      <h4 className="text-xs font-black text-slate-950">SGS Inspection Ready</h4>
+                      <p className="text-[11px] text-slate-500 font-medium leading-tight mt-0.5">
+                        Global Trade Assurance
+                      </p>
+                      <p className="text-[10px] text-slate-400 mt-1">
+                        Pre-shipment inspection and quality verification.
+                      </p>
+                    </div>
+                  </div>
+                  <span className="inline-flex items-center gap-1 bg-emerald-100 text-[#065F46] text-[10px] font-bold px-2.5 py-1 rounded-full shrink-0">
+                    <Check className="w-3 h-3" /> Certified
+                  </span>
+                </div>
+
               </div>
-            ))}
+
+              {/* Download TDS Button */}
+              <div className="pt-2">
+                <button
+                  onClick={handleDownloadTDS}
+                  className="w-full bg-[#064E3B] hover:bg-[#043E2E] text-white text-xs font-extrabold py-3.5 px-4 rounded-2xl transition-all flex items-center justify-center gap-2 shadow-xs active:scale-98"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Download Technical Data Sheet (TDS PDF)</span>
+                </button>
+                <p className="text-[10px] text-slate-400 text-center mt-2 font-medium">
+                  Complete specifications • Test Reports • Certification Documents
+                </p>
+              </div>
+
+            </div>
           </div>
 
         </div>
       </section>
 
-      {/* 6. CALL TO ACTION (RFQ / Sample Request) */}
-      <section id="rfq" className="py-16 md:py-20 bg-[#133A2E] relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C5922E]/10 rounded-full blur-[160px] pointer-events-none" />
+      {/* 3. BOTTOM TRUST BAR */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+        <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-2xs grid grid-cols-2 md:grid-cols-5 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-slate-100 items-center">
 
-        <div className="max-w-4xl mx-auto px-6 text-center space-y-8 relative z-10">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#F4F0E6] tracking-tight leading-tight">
-            Need Pre-Shipment Lab Samples or COA Reports?
-          </h2>
-
-          <p className="text-[#F4F0E6]/80 text-sm sm:text-base font-normal max-w-xl mx-auto leading-relaxed">
-            Request official batch COA documents or receive physical laboratory samples sent directly to your corporate office before placing bulk orders.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-            <a
-              href="https://wa.me/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#C5922E] hover:bg-[#B38226] text-[#0B2B22] font-black text-xs uppercase tracking-wider px-8 py-4 rounded-xl shadow-xl shadow-[#C5922E]/20 transition-all duration-300"
-            >
-              <MessageSquare className="w-4 h-4 fill-[#0B2B22]" />
-              <span>Request Sample Pack</span>
-            </a>
-
-            <a
-              href="mailto:quality@pistachiohome.com"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0B2B22] hover:bg-[#133A2E] border border-[#1A4337] text-[#F4F0E6] font-bold text-xs uppercase tracking-wider px-8 py-4 rounded-xl transition"
-            >
-              <span>Email Quality Team</span>
-              <ArrowUpRight className="w-4 h-4 text-[#C5922E]" />
-            </a>
+          <div className="pt-3 md:pt-0 flex flex-col items-center justify-center">
+            <p className="text-sm font-black text-slate-950">130+</p>
+            <p className="text-[10px] text-slate-400 font-medium mt-0.5">Member Refineries</p>
           </div>
+
+          <div className="pt-3 md:pt-0 flex flex-col items-center justify-center">
+            <p className="text-sm font-black text-slate-950">Global Trade Network</p>
+            <p className="text-[10px] text-slate-400 font-medium mt-0.5">Middle East • Asia • Europe</p>
+          </div>
+
+          <div className="pt-3 md:pt-0 flex flex-col items-center justify-center">
+            <p className="text-sm font-black text-slate-950">ICUMSA 45</p>
+            <p className="text-[10px] text-slate-400 font-medium mt-0.5">International Standard</p>
+          </div>
+
+          <div className="pt-3 md:pt-0 flex flex-col items-center justify-center">
+            <p className="text-sm font-black text-slate-950">SGS Certified</p>
+            <p className="text-[10px] text-slate-400 font-medium mt-0.5">Quality & Safety</p>
+          </div>
+
+          <div className="pt-3 md:pt-0 flex flex-col items-center justify-center">
+            <p className="text-sm font-black text-slate-950">Reliable Supply</p>
+            <p className="text-[10px] text-slate-400 font-medium mt-0.5">On Time Delivery</p>
+          </div>
+
         </div>
       </section>
 

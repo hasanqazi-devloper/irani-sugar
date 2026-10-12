@@ -51,7 +51,7 @@ const FAQS: FAQItem[] = [
   }
 ];
 
-export default function ContactPageContent() {
+export default function ContactPage() {
   const [formData, setFormData] = useState({
     companyName: "",
     targetGrade: "ICUMSA 45 Refined White Sugar",
@@ -83,32 +83,44 @@ export default function ContactPageContent() {
   };
 
   return (
-    <div className="bg-[#F3F6F8] min-h-screen text-slate-900 font-sans antialiased py-10 px-4 sm:px-6 lg:px-8 w-full">
-      <div className="max-w-7xl mx-auto">
+    <div className="bg-[#F8FAFC] min-h-screen text-slate-900 font-sans antialiased pb-16 w-full">
+      
+      {/* 1. HERO SECTION WITH BACKGROUND IMAGE */}
+      <section className="relative bg-slate-950 border-b border-slate-200 overflow-hidden pt-12 pb-16 w-full">
         
-        {/* Main 2-Column Grid */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <img
+            src="/contact-hero.png"
+            alt="Contact Trade Desk Background"
+            className="w-full h-full object-cover object-center opacity-60 sm:opacity-80"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 sm:via-slate-900/80 to-slate-950/60" />
+        </div>
+
+        <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl mx-auto">
+          <div className="max-w-3xl space-y-6 py-6">
+            
+                    <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+              Trade Desk Inquiry <br />
+              <span className="text-emerald-400">Get in Touch with Our Global Team</span>
+            </h1>
+
+            <p className="text-slate-300 text-sm sm:text-base font-medium leading-relaxed max-w-2xl">
+              Tell us your requirements and our global trade team will get back to you with the best available options, pricing and shipment details.
+            </p>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 2. MAIN CONTENT AREA */}
+      <section className="w-full px-4 sm:px-6 lg:px-8 py-10 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* LEFT COLUMN: HERO TITLE & RFQ FORM */}
+          {/* LEFT COLUMN: RFQ FORM */}
           <div className="lg:col-span-7 space-y-6">
-            
-            {/* Header Text */}
-            <div className="space-y-2">
-              <span className="text-[11px] font-black tracking-widest uppercase text-[#065F46] block">
-                CONNECT • TRADE • GROW
-              </span>
-              <h1 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight leading-tight">
-                Trade Desk Inquiry
-              </h1>
-              <p className="text-slate-600 text-xs sm:text-sm font-medium leading-relaxed max-w-xl">
-                Tell us your requirements and our global trade team will get back to you with the best available options, pricing and shipment details.
-              </p>
-            </div>
-
-            {/* RFQ Form Card */}
             <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-xs relative overflow-hidden">
               
-              {/* Form Title & Subtitle */}
               <div className="flex items-start gap-3.5 mb-6">
                 <div className="w-10 h-10 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-[#065F46] shrink-0">
                   <MessageSquare className="w-5 h-5" />
@@ -123,10 +135,8 @@ export default function ContactPageContent() {
                 </div>
               </div>
 
-              {/* RFQ Form Fields */}
               <form onSubmit={handleSubmitRfq} className="space-y-4">
                 
-                {/* Row 1: Company Name & Target Sugar Grade */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-800 mb-1.5">
@@ -168,7 +178,6 @@ export default function ContactPageContent() {
                   </div>
                 </div>
 
-                {/* Row 2: Metric Tonnage & Destination Port */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-800 mb-1.5">
@@ -205,7 +214,6 @@ export default function ContactPageContent() {
                   </div>
                 </div>
 
-                {/* Row 3: Additional Notes */}
                 <div>
                   <label className="block text-xs font-bold text-slate-800 mb-1.5">
                     Additional Notes (Optional)
@@ -222,10 +230,9 @@ export default function ContactPageContent() {
                   </div>
                 </div>
 
-                {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full bg-[#064E3B] hover:bg-[#043E2E] text-white text-xs sm:text-sm font-extrabold py-3.5 px-6 rounded-2xl transition-all duration-200 flex items-center justify-center gap-2 shadow-xs active:scale-98 mt-2"
+                  className="w-full bg-[#064E3B] hover:bg-[#043E2E] text-white text-xs sm:text-sm font-extrabold py-3.5 px-6 rounded-2xl transition-all duration-200 flex items-center justify-center gap-2 shadow-xs active:scale-98 mt-2 cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   <span>Submit RFQ</span>
@@ -233,7 +240,6 @@ export default function ContactPageContent() {
 
               </form>
 
-              {/* Trust Badges Footer Bar inside Card */}
               <div className="mt-8 pt-6 border-t border-slate-100 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
                 <div className="flex items-center justify-center gap-2 text-slate-600">
                   <ShieldCheck className="w-4 h-4 text-[#065F46] shrink-0" />
@@ -254,17 +260,14 @@ export default function ContactPageContent() {
               </div>
 
             </div>
-
           </div>
 
           {/* RIGHT COLUMN: WHATSAPP BANNER, CONTACT INFO & FAQS */}
           <div className="lg:col-span-5 space-y-6">
             
-            {/* 1. WHATSAPP INSTANT BANNER */}
             <div className="bg-[#043E2E] rounded-3xl p-6 text-white shadow-md relative overflow-hidden border border-emerald-800">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 
-                {/* Left Text */}
                 <div className="space-y-1.5 z-10">
                   <span className="text-[10px] font-black uppercase tracking-widest text-emerald-300 block">
                     1-CLICK
@@ -278,7 +281,6 @@ export default function ContactPageContent() {
                   </p>
                 </div>
 
-                {/* Right WhatsApp Button */}
                 <a
                   href={`https://wa.me/${TRADE_DESK_WHATSAPP}?text=${encodeURIComponent("Hello ISPA Trade Desk, I have an urgent inquiry regarding sugar export pricing.")}`}
                   target="_blank"
@@ -297,7 +299,6 @@ export default function ContactPageContent() {
               </div>
             </div>
 
-            {/* 2. OFFICIAL SECRETARIAT CONTACT CARD */}
             <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-xs space-y-4">
               <div>
                 <h3 className="text-base font-black text-slate-950 flex items-center gap-2">
@@ -311,7 +312,6 @@ export default function ContactPageContent() {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
                 
-                {/* Phone */}
                 <div className="bg-slate-50 border border-slate-100 p-3 rounded-2xl flex flex-col justify-between">
                   <div className="w-7 h-7 rounded-xl bg-emerald-50 text-[#065F46] flex items-center justify-center mb-2">
                     <Phone className="w-3.5 h-3.5" />
@@ -322,7 +322,6 @@ export default function ContactPageContent() {
                   </div>
                 </div>
 
-                {/* Email */}
                 <div className="bg-slate-50 border border-slate-100 p-3 rounded-2xl flex flex-col justify-between">
                   <div className="w-7 h-7 rounded-xl bg-emerald-50 text-[#065F46] flex items-center justify-center mb-2">
                     <Mail className="w-3.5 h-3.5" />
@@ -333,7 +332,6 @@ export default function ContactPageContent() {
                   </div>
                 </div>
 
-                {/* Location */}
                 <div className="bg-slate-50 border border-slate-100 p-3 rounded-2xl flex flex-col justify-between">
                   <div className="w-7 h-7 rounded-xl bg-emerald-50 text-[#065F46] flex items-center justify-center mb-2">
                     <MapPin className="w-3.5 h-3.5" />
@@ -347,7 +345,6 @@ export default function ContactPageContent() {
               </div>
             </div>
 
-            {/* 3. FREQUENTLY ASKED QUESTIONS (ACCORDION) */}
             <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-xs space-y-4">
               <div>
                 <h3 className="text-base font-black text-slate-950 flex items-center gap-2">
@@ -359,7 +356,6 @@ export default function ContactPageContent() {
                 </p>
               </div>
 
-              {/* Accordion List */}
               <div className="divide-y divide-slate-100 pt-1">
                 {FAQS.map((faq, idx) => {
                   const isOpen = openFaq === idx;
@@ -367,7 +363,7 @@ export default function ContactPageContent() {
                     <div key={idx} className="py-3">
                       <button
                         onClick={() => toggleFaq(idx)}
-                        className="w-full flex items-center justify-between text-left gap-3 focus:outline-none group"
+                        className="w-full flex items-center justify-between text-left gap-3 focus:outline-none group cursor-pointer"
                       >
                         <span className="text-xs font-bold text-slate-900 group-hover:text-[#065F46] transition-colors">
                           {faq.question}
@@ -392,8 +388,8 @@ export default function ContactPageContent() {
           </div>
 
         </div>
+      </section>
 
-      </div>
     </div>
   );
 }

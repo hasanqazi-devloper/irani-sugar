@@ -146,48 +146,7 @@ export default function ProductsPageContent() {
         Choose from our flexible packaging options for global markets. Request samples and get a tailored quote for your import needs.
       </p>
 
-      {/* 4 Feature Badges inside Hero */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4">
-        <div className="flex items-center gap-2.5 bg-slate-900/70 backdrop-blur-md border border-white/15 p-3 rounded-2xl text-white">
-          <div className="w-8 h-8 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-300 shrink-0">
-            <Award className="w-4 h-4" />
-          </div>
-          <div>
-            <p className="text-[11px] font-bold leading-none">Premium Quality</p>
-            <p className="text-[10px] text-slate-300 mt-1 font-medium">ICUMSA 45 Standard</p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2.5 bg-slate-900/70 backdrop-blur-md border border-white/15 p-3 rounded-2xl text-white">
-          <div className="w-8 h-8 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-300 shrink-0">
-            <Globe className="w-4 h-4" />
-          </div>
-          <div>
-            <p className="text-[11px] font-bold leading-none">Global Shipping</p>
-            <p className="text-[10px] text-slate-300 mt-1 font-medium">Worldwide Delivery</p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2.5 bg-slate-900/70 backdrop-blur-md border border-white/15 p-3 rounded-2xl text-white">
-          <div className="w-8 h-8 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-300 shrink-0">
-            <ShieldCheck className="w-4 h-4" />
-          </div>
-          <div>
-            <p className="text-[11px] font-bold leading-none">Verified Mills</p>
-            <p className="text-[10px] text-slate-300 mt-1 font-medium">130+ Refineries</p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2.5 bg-slate-900/70 backdrop-blur-md border border-white/15 p-3 rounded-2xl text-white">
-          <div className="w-8 h-8 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-300 shrink-0">
-            <Leaf className="w-4 h-4" />
-          </div>
-          <div>
-            <p className="text-[11px] font-bold leading-none">Sustainable</p>
-            <p className="text-[10px] text-slate-300 mt-1 font-medium">Responsible Production</p>
-          </div>
-        </div>
-      </div>
+   
 
     </div>
 
